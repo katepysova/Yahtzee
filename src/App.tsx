@@ -20,8 +20,23 @@ const generateDices = (): number[] => {
 
 function App() {
   const [dices, setDices] = useState(generateDices());
+  const [locked, setLocked] = useState(Array(5).fill(false));
+
   const handleClick = () => {
-    setDices(generateDices());
+    setDices((previousState: number[]) => {
+      const currentState = locked.map((item, index) =>
+        item ? previousState[index] : generateRandomNumber()
+      );
+      return currentState;
+    });
+  };
+
+  const handleDieClick = (index: number) => {
+    setLocked((currentState: boolean[]): boolean[] => {
+      const newState = [...currentState];
+      newState[index] = !newState[index];
+      return newState;
+    });
   };
 
   return (
@@ -29,7 +44,7 @@ function App() {
       <button type="button" onClick={handleClick}>
         New dices
       </button>
-      <Dices dices={dices} />
+      <Dices dices={dices} locked={locked} onDieClick={handleDieClick} />
       <ul>
         <li>totalAmount 1: {rules.totalAmount(1, dices)}</li>
         <li>totalAmount 2: {rules.totalAmount(2, dices)}</li>

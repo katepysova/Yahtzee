@@ -1,30 +1,32 @@
-/* eslint-disable react/no-array-index-key */
+import uuid from "react-uuid";
+import cn from "classnames";
 import "./Die.scss";
 
 interface DieProps {
   value: number;
+  locked: boolean;
+  disabled: boolean;
+  handleClick: () => void;
 }
 
 const generateDots = (value: number) => {
   const dots = [];
   for (let i = 0; i < value; i++) {
-    dots.push(<li className="dot" key={i} />);
+    dots.push(<li className="dot" key={uuid()} />);
   }
-  return dots;
+  return <ul className={`dots dots--${value}`}>{dots}</ul>;
 };
 
-function Die({ value }: DieProps): JSX.Element {
+function Die({ value, handleClick, locked, disabled }: DieProps): JSX.Element {
   return (
-    <ul
-      className={`die die--${value}`}
-      role="button"
-      tabIndex={0}
-      onClick={() => null}
-      onKeyDown={() => null}
-      aria-label="click"
+    <button
+      className={cn("die", { "die--locked": locked })}
+      type="button"
+      onClick={handleClick}
+      disabled={disabled}
     >
       {generateDots(value)}
-    </ul>
+    </button>
   );
 }
 

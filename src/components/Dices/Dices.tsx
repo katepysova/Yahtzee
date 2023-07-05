@@ -5,13 +5,21 @@ import "./Dices.scss";
 
 interface DicesProps {
   dices: number[];
+  locked: boolean[];
+  onDieClick: (index: number) => void;
 }
 
-function Dices({ dices }: DicesProps): JSX.Element {
+function Dices({ dices, locked, onDieClick }: DicesProps): JSX.Element {
   return (
     <ul className="dices">
-      {dices.map((value) => (
-        <Die key={uuid()} value={value} />
+      {dices.map((value, index) => (
+        <Die
+          key={uuid()}
+          value={value}
+          handleClick={() => onDieClick(index)}
+          locked={locked[index]}
+          disabled={false}
+        />
       ))}
     </ul>
   );
