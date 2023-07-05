@@ -1,11 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 import { useState } from "react";
+import Dices from "@/components/Dices/Dices";
 import "@/styles/main.scss";
 
 import rules from "rules";
 
 const generateRandomNumber = (): number => {
-  return Math.floor(Math.random() * 5) + 1;
+  return Math.floor(Math.random() * 6) + 1;
 };
 
 const generateDices = (): number[] => {
@@ -28,7 +29,7 @@ function App() {
       <button type="button" onClick={handleClick}>
         New dices
       </button>
-      <h1>{JSON.stringify(dices)}</h1>
+      <Dices dices={dices} />
       <ul>
         <li>totalAmount 1: {rules.totalAmount(1, dices)}</li>
         <li>totalAmount 2: {rules.totalAmount(2, dices)}</li>
@@ -41,6 +42,7 @@ function App() {
         <li>fullHouse: {rules.fullHouse(dices)}</li>
         <li>smallStraight: {rules.smallStraight(dices)}</li>
         <li>largeStraight: {rules.largeStraight(dices)}</li>
+        <li>Chance: {rules.chance(dices)}</li>
         <li>yahtzee: {rules.yahtzee(dices)}</li>
       </ul>
     </div>

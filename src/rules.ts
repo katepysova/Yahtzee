@@ -55,6 +55,10 @@ const largeStraight = (arr: number[]): number => {
     : 0;
 };
 
+const chance = (arr: number[]): number => {
+  return sum(arr);
+};
+
 const yahtzee = (arr: number[]): number => {
   const freq = frequency(arr);
   return freq[0] === 5 ? 50 : 0;
@@ -67,5 +71,6 @@ export default {
   fullHouse,
   smallStraight,
   largeStraight,
+  chance,
   yahtzee,
 };
