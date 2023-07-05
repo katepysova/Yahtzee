@@ -1,0 +1,40 @@
+@import './fonts';
+@import './variables';
+
+* {
+  &,
+  &::before,
+  &::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+  }
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+img {
+  vertical-align: top;
+}
+
+svg {
+  color: inherit;
+  width: rem(24px);
+  height: rem(24px);
+}
+
+a {
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
+}
+
+ul {
+  list-style-type: none;
+}

@@ -1,0 +1,118 @@
+{
+    // See https://duncanleung.com/eslint-mixed-javascript-typescript-files-codebase/
+    // See about prettier + eslint https://github.com/prettier/eslint-plugin-prettier 
+
+    // JS Config
+
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "airbnb",
+        "eslint:recommended",
+        "plugin:import/recommended",
+        "prettier"
+    ],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 8,
+        "requireConfigFile": false
+    },
+    "plugins": ["import", "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {
+                "singleQuote": false,
+                "tabWidth": 2
+            }
+        ], 
+        "arrow-body-style": "off",
+        "prefer-arrow-callback": "off",
+        "indent": "off",
+        "linebreak-style": "off",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "react-hooks/exhaustive-deps": "off",
+        "import/extensions": 0,
+        "no-console": "error",
+        "no-noninteractive-element-to-interactive-role": "off"
+    },
+    "ignorePatterns": ["node_modules/"],
+    
+    // TS Eslint Config
+
+    "overrides": [{
+        "files": ["**/*.{ts,tsx}"],
+        "env": {
+            "browser": true,
+            "commonjs": true,
+            "es6": true,
+            "node": true
+        },
+        "extends": [
+            "eslint:recommended",
+            "airbnb/hooks",
+            "airbnb-typescript",
+            "plugin:react/recommended",
+            "plugin:react/jsx-runtime",
+            "plugin:@typescript-eslint/recommended",
+            "plugin:@typescript-eslint/recommended-requiring-type-checking",
+            "plugin:import/recommended",
+            "prettier"
+        ],
+        "parser": "@typescript-eslint/parser",
+        "parserOptions": {
+            "ecmaFeatures": {
+                "jsx": true
+            },
+            "ecmaVersion": "latest",
+            "sourceType": "module",
+            "tsconfigRootDir": "./",
+            "project": "./tsconfig.json"
+        },
+        "plugins": ["@typescript-eslint", "import", "prettier"], 
+        "settings": {
+            "import/parsers": {
+                "@typescript-eslint/parser": [".ts", ".tsx"]
+            },
+            "import/resolver": {
+                "typescript": {
+                    "alwaysTryTypes": true,
+                    "project": [
+                        "packages/module-a/tsconfig.json",
+                        "packages/module-b/tsconfig.json"
+                    ]
+                }
+            },
+            "react": {
+                "version": "18.x"
+            }
+        },
+        "rules": {
+            "prettier/prettier": 2,
+            "arrow-body-style": "off",
+            "prefer-arrow-callback": "off",
+            "indent": "off",
+            "linebreak-style": "off",
+            "@typescript-eslint/no-explicit-any": "warn",
+            "@typescript-eslint/no-unsafe-assignment": "off",
+            "react-hooks/exhaustive-deps": "off",
+            "no-console": "error",
+            "@typescript-eslint/indent": "off",
+            "import/extensions": 0,
+            "import/no-unresolved": "error",
+            "no-plusplus": "off",
+            "jsx-a11y/no-noninteractive-element-to-interactive-role": "off",
+            "no-shadow": "off",
+            "@typescript-eslint/no-shadow": "off",
+            "import/prefer-default-export": "off",
+            "react/button-has-type": "off",
+            "react/require-default-props": "off"
+        }
+    }]
+}
