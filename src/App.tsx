@@ -3,9 +3,6 @@ import { useState } from "react";
 import ScoreTable from "@/components/ScoreTable/ScoreTable";
 import Dices from "@/components/Dices/Dices";
 
-import rules from "rules";
-import ScoreRow from "./components/ScoreRow/ScoreRow";
-
 interface ScoreState {
   ones: number | undefined;
   twos: number | undefined;
@@ -113,90 +110,8 @@ function App() {
       >
         New dices
       </button>
-      <h2>Upper</h2>
-      <ScoreTable>
-        <ScoreRow
-          score={score.ones}
-          name="Ones"
-          generateSuggestedValue={rules.totalAmount(1, dices)}
-          handleClick={handleScoreRowClick("ones", rules.totalAmount(1, dices))}
-        />
-        <ScoreRow
-          score={score.twos}
-          name="Twos"
-          generateSuggestedValue={rules.totalAmount(2, dices)}
-          handleClick={handleScoreRowClick("twos", rules.totalAmount(2, dices))}
-        />
-        <ScoreRow
-          score={score.threes}
-          name="Threes"
-          generateSuggestedValue={rules.totalAmount(3, dices)}
-          handleClick={handleScoreRowClick("threes", rules.totalAmount(3, dices))}
-        />
-        <ScoreRow
-          score={score.fours}
-          name="Fours"
-          generateSuggestedValue={rules.totalAmount(4, dices)}
-          handleClick={handleScoreRowClick("fours", rules.totalAmount(4, dices))}
-        />
-        <ScoreRow
-          score={score.fives}
-          name="Fives"
-          generateSuggestedValue={rules.totalAmount(5, dices)}
-          handleClick={handleScoreRowClick("fives", rules.totalAmount(5, dices))}
-        />
-        <ScoreRow
-          score={score.sixes}
-          name="Sixes"
-          generateSuggestedValue={rules.totalAmount(6, dices)}
-          handleClick={handleScoreRowClick("sixes", rules.totalAmount(6, dices))}
-        />
-      </ScoreTable>
-      <h2>Lower</h2>
-      <ScoreTable>
-        <ScoreRow
-          score={score.threeOfKind}
-          name="Three of kind"
-          generateSuggestedValue={rules.threeOfKind(dices)}
-          handleClick={handleScoreRowClick("threeOfKind", rules.threeOfKind(dices))}
-        />
-        <ScoreRow
-          score={score.fourOfKind}
-          name="Four of kind"
-          generateSuggestedValue={rules.fourOfKind(dices)}
-          handleClick={handleScoreRowClick("fourOfKind", rules.fourOfKind(dices))}
-        />
-        <ScoreRow
-          score={score.fullHouse}
-          name="Full House"
-          generateSuggestedValue={rules.fullHouse(dices)}
-          handleClick={handleScoreRowClick("fullHouse", rules.fullHouse(dices))}
-        />
-        <ScoreRow
-          score={score.smallStraight}
-          name="Small Straight"
-          generateSuggestedValue={rules.smallStraight(dices)}
-          handleClick={handleScoreRowClick("smallStraight", rules.smallStraight(dices))}
-        />
-        <ScoreRow
-          score={score.largeStraight}
-          name="Large Straight"
-          generateSuggestedValue={rules.largeStraight(dices)}
-          handleClick={handleScoreRowClick("largeStraight", rules.largeStraight(dices))}
-        />
-        <ScoreRow
-          score={score.chance}
-          name="Chance"
-          generateSuggestedValue={rules.chance(dices)}
-          handleClick={handleScoreRowClick("chance", rules.chance(dices))}
-        />
-        <ScoreRow
-          score={score.yahtzee}
-          name="Yahtzee"
-          generateSuggestedValue={rules.yahtzee(dices)}
-          handleClick={handleScoreRowClick("yahtzee", rules.yahtzee(dices))}
-        />
-      </ScoreTable>
+      <ScoreTable score={score} dices={dices} onScoreRowClick={handleScoreRowClick} />
+
       <h3>
         Total Score:{" "}
         {Object.values(score)

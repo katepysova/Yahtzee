@@ -1,11 +1,11 @@
 .row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border: 0.5px solid black;
-    cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 0.5px solid black;
+  cursor: pointer;
 
-    &--disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
