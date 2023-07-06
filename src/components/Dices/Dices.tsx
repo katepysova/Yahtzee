@@ -11,7 +11,7 @@ interface DicesProps {
 
 function Dices({ dices, locked, onDieClick }: DicesProps): JSX.Element {
   return (
-    <ul className="dices">
+    <div className="dices">
       {dices.map((value, index) => (
         <Die
           key={uuid()}
@@ -21,7 +21,7 @@ function Dices({ dices, locked, onDieClick }: DicesProps): JSX.Element {
           disabled={false}
         />
       ))}
-    </ul>
+    </div>
   );
 }
 
