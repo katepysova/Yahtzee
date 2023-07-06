@@ -1,9 +1,11 @@
+import "./ScoreTable.scss";
+
 interface ScoreTableProps {
   children: React.ReactNode;
 }
 
 function ScoreTable({ children }: ScoreTableProps): JSX.Element {
-  return <ul>{children}</ul>;
+  return <div className="table">{children}</div>;
 }
 
 export default ScoreTable;

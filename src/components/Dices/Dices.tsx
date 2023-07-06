@@ -6,10 +6,11 @@ import "./Dices.scss";
 interface DicesProps {
   dices: number[];
   locked: boolean[];
+  disabled: boolean;
   onDieClick: (index: number) => void;
 }
 
-function Dices({ dices, locked, onDieClick }: DicesProps): JSX.Element {
+function Dices({ dices, locked, disabled, onDieClick }: DicesProps): JSX.Element {
   return (
     <div className="dices">
       {dices.map((value, index) => (
@@ -18,7 +19,7 @@ function Dices({ dices, locked, onDieClick }: DicesProps): JSX.Element {
           value={value}
           handleClick={() => onDieClick(index)}
           locked={locked[index]}
-          disabled={false}
+          disabled={disabled}
         />
       ))}
     </div>
