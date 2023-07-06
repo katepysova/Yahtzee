@@ -99,17 +99,31 @@ function App() {
     };
   };
 
+  const gameOver = Object.values(score).every((item) => item || item === 0);
+
   return (
     <div>
-      <h2>Rolls Left: {rollsLeft}</h2>
-      <Dices dices={dices} locked={locked} onDieClick={handleDieClick} disabled={rollsLeft === 0} />
-      <button
-        type="button"
-        onClick={handleClick}
-        disabled={locked.every((x) => x) || rollsLeft === 0}
-      >
-        New dices
-      </button>
+      {gameOver ? (
+        <h1>Game Over</h1>
+      ) : (
+        <>
+          <h2>Rolls Left: {rollsLeft}</h2>
+          <Dices
+            dices={dices}
+            locked={locked}
+            onDieClick={handleDieClick}
+            disabled={rollsLeft === 0}
+          />
+          <button
+            type="button"
+            onClick={handleClick}
+            disabled={locked.every((x) => x) || rollsLeft === 0}
+          >
+            New dices
+          </button>
+        </>
+      )}
+
       <ScoreTable score={score} dices={dices} onScoreRowClick={handleScoreRowClick} />
 
       <h3>
