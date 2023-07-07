@@ -1,9 +1,10 @@
 import { useState } from "react";
-
 import ScoreTable from "@/components/ScoreTable/ScoreTable";
 import Dices from "@/components/Dices/Dices";
 import { Scores } from "@/components/shared/interfaces/scores.interface";
 import { RuleNames, generateRandomNumber, generateDices } from "@/components/Game/rules";
+import Button from "../shared/Button/Button";
+
 import "./Game.scss";
 
 const NUMBER_OF_ATTEMPTS = 2;
@@ -65,34 +66,44 @@ function Game(): JSX.Element {
 
   return (
     <section className="game">
-      <h1 className="heading-primary">Yahtzee</h1>
-      {gameOver ? (
-        <h1>Game Over</h1>
-      ) : (
-        <>
-          <h2>Rolls Left: {rollsLeft}</h2>
-          <Dices
-            dices={dices}
-            locked={locked}
-            onDieClick={handleDieClick}
-            disabled={rollsLeft === 0}
-          />
-          <button
-            type="button"
-            onClick={handleClick}
-            disabled={locked.every((x) => x) || rollsLeft === 0}
-          >
-            New dices
-          </button>
-        </>
-      )}
+      <div className="game__container container">
+        <div className="game__content">
+          <h1 className="heading-primary u-center">Yahtzee</h1>
+          {gameOver ? (
+            <h1>Game Over</h1>
+          ) : (
+            <>
+              <div className="game__line">
+                <h2 className="heading-secondary">Rolls Left: {rollsLeft}</h2>
+                <Button
+                  variant="secondary"
+                  type="button"
+                  handleClick={handleClick}
+                  disabled={locked.every((x) => x) || rollsLeft === 0}
+                >
+                  New dices
+                </Button>
+              </div>
 
-      <ScoreTable score={score} dices={dices} onScoreRowClick={handleScoreRowClick} />
+              <Dices
+                dices={dices}
+                locked={locked}
+                onDieClick={handleDieClick}
+                disabled={rollsLeft === 0}
+              />
+            </>
+          )}
 
-      <h3>Total Score: {totalScore}</h3>
-      <button type="button" onClick={reset}>
-        New game
-      </button>
+          <ScoreTable score={score} dices={dices} onScoreRowClick={handleScoreRowClick} />
+
+          <div className="game__line">
+            <h2 className="heading-secondary">Total Score: {totalScore}</h2>
+            <Button variant="primary" type="button" handleClick={reset}>
+              New game
+            </Button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

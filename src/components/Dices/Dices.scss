@@ -1,7 +1,10 @@
 .dices {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
   gap: 16px;
-  margin: 0 auto;
   max-width: 800px;
+  padding: 24px;
 }

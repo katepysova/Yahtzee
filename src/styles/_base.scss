@@ -18,6 +18,11 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  font-family: Lora, serif;
+  color: $color-black;
+}
+
 img {
   vertical-align: top;
 }
@@ -35,6 +40,23 @@ a {
   }
 }
 
+a,
+button {
+  cursor: pointer;
+}
+
 ul {
   list-style-type: none;
+}
+
+.container {
+  flex: 1;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 36px;
+  max-height: 100%;
+  height: 100%;
+  background-color: $color-white;
+  border-radius: 6px;
 }

@@ -1,0 +1,35 @@
+@import 'src/styles/variables';
+
+.btn {
+  display: inline-block;
+  color: $color-white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 16px;
+  transition: all 0.2s;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+
+  &--primary {
+    background-color: $color-pink;
+    
+  }
+
+  &--secondary {
+    background-color: $color-primary
+  }
+
+  &--primary,
+  &--secondary {
+    &:hover {
+      background-color: $color-pink;
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0px 10px 49px 4px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1);
+    }
+
+    &:active {
+      transform: scale(0.99) translateY(0.5px);
+    }
+  }
+}
