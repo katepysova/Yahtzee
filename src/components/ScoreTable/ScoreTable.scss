@@ -1,5 +1,10 @@
+@import 'src/styles/variables';
+
 .table {
   display: grid;
   grid-template-columns: 1fr;
-  border: 1px solid black;
+  border: 1px solid $color-black;
+  background-color: $color-white;
+  border-radius: 8px;
+  overflow: hidden;
 }

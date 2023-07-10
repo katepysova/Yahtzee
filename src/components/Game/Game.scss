@@ -5,6 +5,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 0;
+    padding: 16px 0;
+  }
+
+  &__board {
+    background-image: url('../../images/bg-inner.avif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 36px;
+    padding: 24px;
   }
 }

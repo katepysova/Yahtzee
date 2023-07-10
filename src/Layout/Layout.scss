@@ -27,8 +27,10 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow-y: scroll !important;
+    overflow-y: hidden;
+
+    & .container {
+      overflow-y: auto;
+    }
   }
 }

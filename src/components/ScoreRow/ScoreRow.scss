@@ -1,11 +1,47 @@
+@import 'src/styles/variables';
+
 .row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 0.5px solid black;
+  grid-template-columns: repeat(2, 1fr);
   cursor: pointer;
+  padding: 4px 12px;
+
+  &:not(:last-child) {
+    border-bottom: 0.5px solid $color-black;
+  }
 
   &--disabled {
-    opacity: 0.5;
+    opacity: 0.7;
     cursor: not-allowed;
+    background: linear-gradient(
+      to right,
+      rgb(209 196 233 / 100%) 0%,
+      rgb(209 196 233 / 100%) 30%,
+      rgb(227 242 253 / 100%) 40%
+    );
+    background-size: 300% 300%;
+    animation: slide 0.5s ease 1;
+  }
+
+  &__name {
+    text-transform: capitalize;
+  }
+
+  &__value {
+    justify-self: end;
+
+    &--zero {
+      color: $color-red;
+    }
+  }
+}
+
+@keyframes slide {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 51%;
   }
 }

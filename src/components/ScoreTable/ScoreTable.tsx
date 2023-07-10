@@ -28,20 +28,16 @@ Object.values(RuleNames).forEach((ruleName) => {
 
 function ScoreTable({ score, dices, onScoreRowClick }: ScoreTableProps): JSX.Element {
   return (
-    <div>
-      <h2>Upper</h2>
-      <div className="table">
-        {rowsData.map((row) => (
-          <ScoreRow
-            key={row.key}
-            score={score[row.key as keyof Scores]}
-            name={row.name}
-            generateSuggestedValue={calculateScore(row.key, dices)}
-            handleClick={onScoreRowClick(row.key, calculateScore(row.key as keyof Scores, dices))}
-          />
-        ))}
-      </div>
-      <h2>Lower</h2>
+    <div className="table">
+      {rowsData.map((row) => (
+        <ScoreRow
+          key={row.key}
+          score={score[row.key as keyof Scores]}
+          name={row.name}
+          generateSuggestedValue={calculateScore(row.key, dices)}
+          handleClick={onScoreRowClick(row.key, calculateScore(row.key as keyof Scores, dices))}
+        />
+      ))}
     </div>
   );
 }

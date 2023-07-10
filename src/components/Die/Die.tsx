@@ -6,6 +6,7 @@ interface DieProps {
   value: number;
   locked: boolean;
   disabled: boolean;
+  isRolling: boolean;
   handleClick: () => void;
 }
 
@@ -17,10 +18,12 @@ const generateDots = (value: number) => {
   return <ul className={`dots dots--${value}`}>{dots}</ul>;
 };
 
-function Die({ value, handleClick, locked, disabled }: DieProps): JSX.Element {
+function Die({ value, handleClick, isRolling, locked, disabled }: DieProps): JSX.Element {
+  const rolling = !locked && isRolling;
+
   return (
     <button
-      className={cn("die", { "die--locked": locked })}
+      className={cn("die", { "die--locked": locked, "die--rolling": rolling })}
       type="button"
       onClick={handleClick}
       disabled={disabled}

@@ -10,6 +10,7 @@ import "./Game.scss";
 const NUMBER_OF_ATTEMPTS = 2;
 const NUMBER_OF_DICES = 5;
 const MAX_SIDE_VALUE = 6;
+const ROLLING_SPEED = 500;
 
 const initialScore: { [key: string]: number | undefined } = {};
 
@@ -21,16 +22,27 @@ function Game(): JSX.Element {
   const [dices, setDices] = useState<number[]>(generateDices(NUMBER_OF_DICES, MAX_SIDE_VALUE));
   const [locked, setLocked] = useState<boolean[]>(Array(NUMBER_OF_DICES).fill(false));
   const [rollsLeft, setRollsLeft] = useState<number>(NUMBER_OF_ATTEMPTS);
+  const [isRolling, setIsRolling] = useState<boolean>(false);
   const [score, setScore] = useState<Scores>(initialScore as unknown as Scores);
 
+  const animateRoll = (func: () => void) => {
+    setIsRolling(true);
+    setTimeout(() => {
+      setIsRolling(false);
+      func();
+    }, ROLLING_SPEED);
+  };
+
   const handleClick = () => {
-    setDices((previousState: number[]) => {
-      const currentState = locked.map((item, index) =>
-        item ? previousState[index] : generateRandomNumber(MAX_SIDE_VALUE)
-      );
-      return currentState;
-    });
     setRollsLeft((previousState) => previousState - 1);
+    animateRoll(() => {
+      setDices((previousState: number[]) => {
+        const currentState = locked.map((item, index) =>
+          item ? previousState[index] : generateRandomNumber(MAX_SIDE_VALUE)
+        );
+        return currentState;
+      });
+    });
   };
 
   const handleDieClick = (index: number) => {
@@ -42,10 +54,12 @@ function Game(): JSX.Element {
   };
 
   const reset = () => {
-    setDices(generateDices(NUMBER_OF_DICES, MAX_SIDE_VALUE));
     setLocked(Array(NUMBER_OF_DICES).fill(false));
     setRollsLeft(NUMBER_OF_ATTEMPTS);
     setScore(initialScore as unknown as Scores);
+    animateRoll(() => {
+      setDices(generateDices(NUMBER_OF_DICES, MAX_SIDE_VALUE));
+    });
   };
 
   const handleScoreRowClick = (name: string, func: () => number) => {
@@ -53,9 +67,11 @@ function Game(): JSX.Element {
       setScore((previousState) => {
         return { ...previousState, [name]: func() };
       });
-      setDices(generateDices(NUMBER_OF_DICES, MAX_SIDE_VALUE));
       setLocked(Array(NUMBER_OF_DICES).fill(false));
       setRollsLeft(NUMBER_OF_ATTEMPTS);
+      animateRoll(() => {
+        setDices(generateDices(NUMBER_OF_DICES, MAX_SIDE_VALUE));
+      });
     };
   };
 
@@ -68,9 +84,9 @@ function Game(): JSX.Element {
     <section className="game">
       <div className="game__container container">
         <div className="game__content">
-          <h1 className="heading-primary u-center">Yahtzee</h1>
+          <h1 className="heading-primary u-center u-margin-bottom-small">Yahtzee</h1>
           {gameOver ? (
-            <h1>Game Over</h1>
+            <h2 className="heading-secondary u-center">Game Over</h2>
           ) : (
             <>
               <div className="game__line">
@@ -84,17 +100,18 @@ function Game(): JSX.Element {
                   New dices
                 </Button>
               </div>
-
-              <Dices
-                dices={dices}
-                locked={locked}
-                onDieClick={handleDieClick}
-                disabled={rollsLeft === 0}
-              />
+              <div className="game__board">
+                <Dices
+                  dices={dices}
+                  locked={locked}
+                  isRolling={isRolling}
+                  onDieClick={handleDieClick}
+                  disabled={rollsLeft === 0}
+                />
+                <ScoreTable score={score} dices={dices} onScoreRowClick={handleScoreRowClick} />
+              </div>
             </>
           )}
-
-          <ScoreTable score={score} dices={dices} onScoreRowClick={handleScoreRowClick} />
 
           <div className="game__line">
             <h2 className="heading-secondary">Total Score: {totalScore}</h2>
