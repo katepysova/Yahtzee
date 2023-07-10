@@ -6,6 +6,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 16px 0;
+    gap: 16px;
+
+    @media only screen and (max-width: $bp-extra-small) {
+      flex-wrap: wrap;
+    }
   }
 
   &__board {
@@ -19,5 +24,14 @@
     grid-template-columns: 1.5fr 1fr;
     gap: 36px;
     padding: 24px;
+
+    @media only screen and (max-width: $bp-medium) {
+      grid-template-columns: 1fr 2fr;
+    }
+
+    @media only screen and (max-width: $bp-extra-small) {
+      padding: 16px;
+      gap: 16px;
+    }
   }
 }

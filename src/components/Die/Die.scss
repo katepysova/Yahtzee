@@ -5,6 +5,11 @@
   height: 14px;
   border-radius: 50%;
   background-color: $color-black;
+
+  @media only screen and (max-width: $bp-medium) {
+    height: 8px;
+    width: 8px;
+  }
 }
 
 .dots {
@@ -23,6 +28,11 @@
       background-color: $color-red;
       width: 16px;
       height: 16px;
+
+      @media only screen and (max-width: $bp-medium) {
+        height: 10px;
+        width: 10px;
+      }
     }
   }
 
@@ -131,6 +141,11 @@
 
   &:disabled {
     cursor: not-allowed;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    height: 64px;
+    width: 64px;
   }
 }
 

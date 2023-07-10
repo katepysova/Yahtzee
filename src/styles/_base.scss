@@ -57,4 +57,9 @@ ul {
   height: 100%;
   background-color: $color-white;
   border-radius: 16px;
+
+  @media only screen and (max-width: $bp-small) {
+    padding: 36px 18px;
+    border-radius: unset;
+  }
 }
