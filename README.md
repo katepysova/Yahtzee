@@ -1,10 +1,16 @@
-# React TS Boilerplate
+# Yahtzee
+
+The objective of YAHTZEE is to get as many points as possible by rolling five dice and getting certain combinations of dice.
+
+Read more about it [here](https://en.wikipedia.org/wiki/Yahtzee).
+
+Try [demo](https://katepysova.github.io/Yahtzee/) of this project hosted on the GitHub pages.
 
 ## Installation
 
-1. Downloand zip:
+1. Downloand zip or clone repo:
 
-   `git@github.com:katepysova/React_TS_Boilerplate.git`
+   `git@github.com:katepysova/Yahtzee.git`
 
 2. Change your current directory to this project directory.
 
