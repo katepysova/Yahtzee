@@ -4,6 +4,7 @@ import "./ScoreRow.scss";
 interface ScoreRowProps {
   score?: number;
   name: string;
+  disabled: boolean;
   generateSuggestedValue: () => number;
   handleClick: () => void;
 }
@@ -11,11 +12,12 @@ interface ScoreRowProps {
 function ScoreRow({
   score,
   name,
+  disabled,
   generateSuggestedValue,
   handleClick,
 }: ScoreRowProps): JSX.Element {
   const value = score || score === 0 ? score : generateSuggestedValue();
-  const disabled = score !== undefined;
+  const isDisabled = score !== undefined || disabled;
   const predictedZero = score === undefined && value === 0;
 
   return (
@@ -24,7 +26,7 @@ function ScoreRow({
       tabIndex={0}
       onKeyDown={() => null}
       className={cn("row", { "row--disabled": disabled })}
-      onClick={disabled ? () => null : handleClick}
+      onClick={isDisabled ? () => null : handleClick}
     >
       <div className="row__name">{name}</div>
       <div className={cn("row__value", { "row__value--zero": predictedZero })}>{value}</div>

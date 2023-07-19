@@ -108,7 +108,12 @@ function Game(): JSX.Element {
                   onDieClick={handleDieClick}
                   disabled={rollsLeft === 0}
                 />
-                <ScoreTable score={score} dices={dices} onScoreRowClick={handleScoreRowClick} />
+                <ScoreTable
+                  disabled={isRolling}
+                  score={score}
+                  dices={dices}
+                  onScoreRowClick={handleScoreRowClick}
+                />
               </div>
             </>
           )}

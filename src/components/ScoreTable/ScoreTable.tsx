@@ -6,6 +6,7 @@ import "./ScoreTable.scss";
 interface ScoreTableProps {
   score: Scores;
   dices: number[];
+  disabled: boolean;
   onScoreRowClick: (name: string, func: () => number) => () => void;
 }
 
@@ -26,11 +27,12 @@ Object.values(RuleNames).forEach((ruleName) => {
   rowsData.push(ruleObject);
 });
 
-function ScoreTable({ score, dices, onScoreRowClick }: ScoreTableProps): JSX.Element {
+function ScoreTable({ score, dices, disabled, onScoreRowClick }: ScoreTableProps): JSX.Element {
   return (
     <div className="table">
       {rowsData.map((row) => (
         <ScoreRow
+          disabled={disabled}
           key={row.key}
           score={score[row.key as keyof Scores]}
           name={row.name}
