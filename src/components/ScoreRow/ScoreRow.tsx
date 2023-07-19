@@ -25,7 +25,7 @@ function ScoreRow({
       role="button"
       tabIndex={0}
       onKeyDown={() => null}
-      className={cn("row", { "row--disabled": disabled })}
+      className={cn("row", { "row--disabled": isDisabled })}
       onClick={isDisabled ? () => null : handleClick}
     >
       <div className="row__name">{name}</div>
