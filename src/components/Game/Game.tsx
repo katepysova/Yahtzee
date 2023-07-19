@@ -3,7 +3,7 @@ import ScoreTable from "@/components/ScoreTable/ScoreTable";
 import Dices from "@/components/Dices/Dices";
 import { Scores } from "@/components/shared/interfaces/scores.interface";
 import { RuleNames, generateRandomNumber, generateDices } from "@/components/Game/rules";
-import Button from "../shared/Button/Button";
+import Button from "@/components/shared/Button/Button";
 
 import "./Game.scss";
 
